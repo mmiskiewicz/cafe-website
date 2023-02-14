@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML 5 Boilerplate</title>
+
+    <link href="/static/css/styles.css" rel="stylesheet" />
+    <!-- Latest compiled and minified CSS -->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
+    <!-- jQuery library -->
+   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> -->
+    <!-- Latest compiled JavaScript -->
+   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+    <!--<link rel="stylesheet" href="style.css">-->
+  </head>
+  <body class="full">
+	<!--<script src="index.js"></script>-->
+
+    <ul class="cafes_list">
+   {% for cafe in cafes %}
+      <li class="clickable" onclick="location.href = '{{ url_for('show_cafe', cafe_id=cafe.id) }}'">
+    <div class="cafe_record">
+      <div class="image">
+          <img src="{{ cafe.img_url }}" style="height:100px; width:100px;">
+      </div>
+        <div class="text">
+    <p class="uppercase">{{ cafe.name }}</p>
+    <p>🏙 {{ cafe.location }}</p>
+    <p>☕ {{ cafe.coffee_price }}</p>
+        </div>
+    </div>
+      </li>
+    {% endfor %}
+      </ul>
+
+
+    <!--
+  <table class="table table-striped">
+
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Map URL</th>
+      <th scope="col">Image URL</th>
+      <th scope="col">Location</th>
+      <th scope="col">Has Sockets</th>
+      <th scope="col">Has Toilet</th>
+      <th scope="col">Has Wifi</th>
+      <th scope="col">Can Take Calls</th>
+      <th scope="col">Seats</th>
+      <th scope="col">Coffee Price</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for cafe in cafes %}
+      <tr>
+        <th scope="row">{{ cafe.id }}</th>
+        <td>{{ cafe.name }}</td>
+        <td>{{ cafe.map_url }}</td>
+        <td><img src="{{ cafe.img_url }}" style="height:100px; width:100px;"></td>
+        <td>{{ cafe.location }}</td>
+        <td>{{ cafe.has_sockets }}</td>
+        <td>{{ cafe.has_toilet }}</td>
+        <td>{{ cafe.has_wifi }}</td>
+        <td>{{ cafe.can_take_calls }}</td>
+        <td>{{ cafe.seats }}</td>
+        <td>{{ cafe.coffee_price }}</td>
+         <td> UPDATE </td>
+         <td> DELETE </td>
+      </tr>
+    {% endfor %}
+  </tbody>
+
+  </table>-->
+
+
+
+
+<!--<iframe src="https://www.google.com/maps/place//data=!4m2!3m1!1s0x487603d933684165:0xabf43ad7f4ce48c8?source=g.page.share&output=embed" width="1000" height="1000">
+</iframe>-->
+  </body>
+</html>
