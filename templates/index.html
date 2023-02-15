@@ -18,6 +18,7 @@
   <body class="full">
 	<!--<script src="index.js"></script>-->
 
+
     <ul class="cafes_list">
    {% for cafe in cafes %}
       <li class="clickable" onclick="location.href = '{{ url_for('show_cafe', cafe_id=cafe.id) }}'">
@@ -31,7 +32,11 @@
     <p>☕ {{ cafe.coffee_price }}</p>
         </div>
     </div>
+           <a href="{{url_for('delete_cafe', cafe_id=cafe.id) }}">✘</a>
+           <a href="{{url_for('edit_cafe', cafe_id=cafe.id)}}">UPDATE</a>
+          <a href="{{url_for('add_new_cafe')}}">CREATE</a>
       </li>
+
     {% endfor %}
       </ul>
 
