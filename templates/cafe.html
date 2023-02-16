@@ -2,58 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{{cafe.name}}</title>
         <link href="/static/css/styles.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="/static/icons/coffee_favicon.png">
 </head>
 <body class="full">
-{{cafe.id}}
-<div class="black_div">
-    <div class="cafe_record">
-   <img src="{{ cafe.img_url }}" style="margin:10px; height:300px; width:450px;">
 
-    <div class="text">
-            <a href="{{cafe.map_url}}" target="_blank" style="display:flex; text-decoration: none; color:white;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="{{ url_for('get_all_cafes') }}">Cafes</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="{{url_for('add_new_cafe')}}">Add New Cafe</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+{{cafe.id}}
+<div class="black_div_cafe">
+   <!-- <center><a href="{{cafe.map_url}}" target="_blank" style="display:flex; text-decoration: none; color:white;">
         <h4 class="uppercase">{{cafe.name}}&nbsp</h4>
         <img src="/static/icons/google_maps.png" style="width:32px; height:32px;"/>
-                </a>
+    </a></center>-->
+    <center><h4 class="uppercase">{{cafe.name}}&nbsp</h4></center>
 
-        <h5>@{{ cafe.location }}</h5>
+        <center><h5>@{{ cafe.location }}</h5></center>
+    <div class="cafe_record">
+   <img class="image_border" src="{{ cafe.img_url }}" style="margin:10px; height:300px; width:450px; --color:#cccccc;">
+
+    <div class="text">
+
         <div style="display:flex;">
         <img src="/static/icons/seats.png" style="width:32px; height:32px;"/>
 
-        <h6>{{ cafe.seats }}</h6>
+        <h5 style="margin-top:3px;">&nbsp{{ cafe.seats }}</h5>
         </div>
         <div style="display:flex;">
         <img src="/static/icons/coffee.png" style="width:32px; height:32px;"/>
 
-        <h6>{{ cafe.coffee_price }}</h6>
+        <h5 style="margin-top:3px;">&nbsp{{ cafe.coffee_price }}</h5>
             </div>
-        <img src="/static/icons/sockets.png" style="width:32px; height:32px;"/>
+
+        <h4>Facilities</h4>
         {% if cafe.has_sockets: %}
-         <img src="/static/icons/happiness.png"/>
-        {% else: %}
-        <img src="/static/icons/sad.png"/>
-        {% endif %}
+        <img src="/static/icons/download.png" style="width:32px; height:32px;"/>
         <br>
-        <img src="/static/icons/toilet.png" style="width:32px; height:32px;"/>
+        {% endif %}
         {% if cafe.has_toilet: %}
-        <img src="/static/icons/happiness.png"/>
-        {% else: %}
-        <img src="/static/icons/sad.png"/>
-        {% endif %}
+        <img src="/static/icons/toilet.png" style="width:32px; height:32px;"/>
         <br>
+        {% endif %}
+       {% if cafe.has_wifi: %}
         <img src="/static/icons/wifi.png" style="width:32px; height:32px;"/>
-        {% if cafe.has_wifi: %}
-        <img src="/static/icons/happiness.png"/>
-        {% else: %}
-        <img src="/static/icons/sad.png"/>
-        {% endif %}
         <br>
-        <img src="/static/icons/calls.png" style="width:32px; height:32px;"/>
+        {% endif %}
         {% if cafe.can_take_calls: %}
-        <img src="/static/icons/happiness.png"/>
-        {% else: %}
-        <img src="/static/icons/sad.png"/>
+        <img src="/static/icons/calls.png" style="width:32px; height:32px;"/>
+        <br>
         {% endif %}
         <!--<a href="https://www.flaticon.com/free-icons/emoji" title="emoji icons">Emoji icons created by Freepik - Flaticon</a>-->
     </div>
