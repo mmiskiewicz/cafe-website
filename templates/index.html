@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>HTML 5 Boilerplate</title>
+    <title>Cafes</title>
 
     <link href="/static/css/styles.css" rel="stylesheet" />
+       <link rel="icon" type="image/x-icon" href="/static/icons/coffee_favicon.png">
     <!-- Latest compiled and minified CSS -->
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">-->
     <!-- jQuery library -->
@@ -18,8 +19,22 @@
   <body class="full">
 	<!--<script src="index.js"></script>-->
 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="{{ url_for('get_all_cafes') }}">Cafes</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="{{url_for('add_new_cafe')}}">Add New Cafe</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
-    <ul class="cafes_list">
+
+
+
+    <ul class="cafes_list" style="margin-top:50px;">
    {% for cafe in cafes %}
       <li class="clickable" onclick="location.href = '{{ url_for('show_cafe', cafe_id=cafe.id) }}'">
     <div class="cafe_record">
@@ -28,13 +43,16 @@
       </div>
         <div class="text">
     <p class="uppercase">{{ cafe.name }}</p>
-    <p>🏙 {{ cafe.location }}</p>
-    <p>☕ {{ cafe.coffee_price }}</p>
+    <p><img src="/static/icons/city.png" style="height:16px; width:16px;">&nbsp {{ cafe.location }}</p>
+            <div style="display:flex;">
+    <p><img src="/static/icons/coffee.png" style="height:16px; width:16px;">&nbsp {{ cafe.coffee_price }}</p>
+                 <a style="margin-left:140px;" href="{{url_for('edit_cafe', cafe_id=cafe.id)}}"><img src="/static/icons/pencil.png" style="height:16px; width:16px;"></a>
+             <a style="text-decoration: none;" href="{{url_for('delete_cafe', cafe_id=cafe.id) }}">&nbsp&nbsp<img src="/static/icons/delete.png" style="height:16px; width:16px;"></a>
+
+       </div>
         </div>
     </div>
-           <a href="{{url_for('delete_cafe', cafe_id=cafe.id) }}">✘</a>
-           <a href="{{url_for('edit_cafe', cafe_id=cafe.id)}}">UPDATE</a>
-          <a href="{{url_for('add_new_cafe')}}">CREATE</a>
+
       </li>
 
     {% endfor %}
