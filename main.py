@@ -1,18 +1,16 @@
 from flask import Flask, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
-from flask_ckeditor import CKEditor, CKEditorField
+from flask_ckeditor import CKEditor
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, BooleanField, SelectField, FloatField
+from wtforms import StringField, SubmitField, BooleanField, SelectField
 from wtforms.validators import DataRequired, URL
-
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
-##CONNECT TO DB
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cafes.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
@@ -41,7 +39,7 @@ class CreateCafeForm(FlaskForm):
     has_toilet = BooleanField("Has toilet")
     has_wifi = BooleanField("Has Wi-Fi")
     can_take_calls = BooleanField("Can take calls")
-    seats = SelectField("seats", choices=[("0-10", "0-10"), ("10-20", "10-20"), ("20-30", "20-30"), ("30-40", "30-40"),
+    seats = SelectField("Seats", choices=[("0-10", "0-10"), ("10-20", "10-20"), ("20-30", "20-30"), ("30-40", "30-40"),
                                           ("40-50", "40-50"), ("50+", "50+")])
     coffee_price = StringField("Coffee Price", validators=[DataRequired()])
     submit = SubmitField("Submit Cafe Entry")
@@ -51,6 +49,7 @@ class CreateCafeForm(FlaskForm):
 def get_all_cafes():
     cafes = Cafe.query.all()
     return render_template("index.html", cafes=cafes)
+
 
 @app.route("/cafe/<int:cafe_id>")
 def show_cafe(cafe_id):
