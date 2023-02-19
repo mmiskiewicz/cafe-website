@@ -3,7 +3,7 @@
   </h1>
 
 <h4 align="center">
-A <a href="https://cafe-website.onrender.com/">website</a> that lists cafes with wifi and power for remote working. 
+A <a href="https://cafe-website.onrender.com/">CRUD website</a> that lists cafes with wifi and power for remote working. 
   </h4>
   
   <h5 align="center">
